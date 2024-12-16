@@ -4,11 +4,12 @@ import java.io.Serializable;
 
 public class Personaje implements Serializable {
 
+    private int id;
     private String tipo ; //tank, base, tirador
     private String elemento; //fuego,agua,planta
 
-    private int vida;
-    private int damage;
+    private double vida;
+    private double damage;
     private int velocidad;
 
     public Personaje(String tipo, String elemento) {
@@ -34,6 +35,42 @@ public class Personaje implements Serializable {
         }
     }
 
+    double atacar(){
+        if(this.tipo=="tank"){
+            return this.damage;
+        } else if (tipo=="tirador") {
+            if ((int)Math.random()*2==0){
+                System.out.println("Salió critico..");
+                return (this.damage*1.5);
+            }else {
+                return this.damage;
+            }
+        }else {
+            if ((int)Math.random()*4==0){
+                System.out.println("Salió critico..");
+                return (this.damage*1.5);
+            }else {
+                return this.damage;
+            }
+        }
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setVida(double vida) {
+        this.vida = vida;
+    }
+
+    public void setDamage(double damage) {
+        this.damage = damage;
+    }
+
     public String getTipo() {
         return tipo;
     }
@@ -50,7 +87,7 @@ public class Personaje implements Serializable {
         this.elemento = elemento;
     }
 
-    public int getVida() {
+    public double getVida() {
         return vida;
     }
 
@@ -58,7 +95,7 @@ public class Personaje implements Serializable {
         this.vida = vida;
     }
 
-    public int getDamage() {
+    public double getDamage() {
         return damage;
     }
 
