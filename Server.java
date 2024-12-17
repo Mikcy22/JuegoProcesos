@@ -30,10 +30,10 @@ public class Server {
 
             boolean paridaAcabada=false;
             DataOutputStream outputStream = new DataOutputStream(cliente2.getOutputStream());
-            DataInputStream inputStream = new DataInputStream(cliente2.getInputStream());
+            DataInputStream inputStream2 = new DataInputStream(cliente2.getInputStream());
 
             DataOutputStream outputStream2 = new DataOutputStream(cliente.getOutputStream());
-            DataInputStream inputStream2 = new DataInputStream(cliente.getInputStream());
+            DataInputStream inputStream = new DataInputStream(cliente.getInputStream());
             while (!paridaAcabada){
 
                 if (p2.getVelocidad()>p1.getVelocidad()){
@@ -41,17 +41,25 @@ public class Server {
 
                     outputStream.writeUTF("Dime que accion quieres hacer (atacar o defender)");
 
-                    if (inputStream.readUTF()=="atacar"){
+                    String cadena = inputStream2.readUTF();
+
+                    if (cadena.equals("atacar")){
+                        System.out.println("Personaje 2 ha atacado");
                         p1.setVida(p1.getVida()-p2.atacar());
-                    } else if (inputStream.readUTF()=="defender") {
+                    } else if (cadena.equals("defender")) {
+                        System.out.println("Personaje 2 se ha defendido");
                         p2.setVida(p2.getVida()+2);
                     }
 
                     outputStream2.writeUTF("Dime que accion quieres hacer (atacar o defender)");
 
-                    if (inputStream2.readUTF()=="atacar"){
+                    String cadena2 = inputStream.readUTF();
+
+                    if (cadena2.equals("atacar")){
+                        System.out.println("Personaje 1 ha atacado");
                         p2.setVida(p2.getVida()-p1.atacar());
-                    } else if (inputStream2.readUTF()=="defender") {
+                    } else if (cadena2.equals("defender")) {
+                        System.out.println("Personaje 1 se ha defendido");
                         p1.setVida(p1.getVida()+2);
                     }
 
@@ -63,19 +71,31 @@ public class Server {
 
                     outputStream2.writeUTF("Dime que accion quieres hacer (atacar o defender)");
 
-                    if (inputStream2.readUTF()=="atacar"){
+                    String cadena2 = inputStream.readUTF();
+
+                    if (cadena2.equals("atacar")){
+                        System.out.println("Personaje 1 ha atacado");
                         p2.setVida(p2.getVida()-p1.atacar());
-                    } else if (inputStream2.readUTF()=="defender") {
+                    } else if (cadena2.equals("defender")) {
+                        System.out.println("Personaje 1 se ha defendido");
                         p1.setVida(p1.getVida()+2);
                     }
 
                     outputStream.writeUTF("Dime que accion quieres hacer (atacar o defender)");
 
-                    if (inputStream.readUTF()=="atacar"){
+                    String cadena = inputStream2.readUTF();
+
+                    if (cadena.equals("atacar")){
+                        System.out.println("Personaje 2 ha atacado");
                         p1.setVida(p1.getVida()-p2.atacar());
-                    } else if (inputStream.readUTF()=="defender") {
+                    } else if (cadena.equals("defender")) {
+                        System.out.println("Personaje 2 se ha defendido");
                         p2.setVida(p2.getVida()+2);
                     }
+
+                    objectOutputStream.writeObject(p1);
+                    objectOutputStream1.writeObject(p2);
+
                 }
 
                 if (p1.getVida()==0 || p2.getVida()==0){

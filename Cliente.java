@@ -8,12 +8,12 @@ import java.util.Scanner;
 public class Cliente {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String host= "localhost";
+        String host= "192.168.8.123";
 
         try(Socket cliente = new Socket(host,6000)){
             //FLUJO DE salida para objetos
             ObjectOutputStream perSal = new ObjectOutputStream(cliente.getOutputStream());
-            Personaje p1 = new Personaje("tirador","agua");
+            Personaje p1 = new Personaje("base","agua");
             // Se envía el objeto
             perSal.writeObject(p1);
 

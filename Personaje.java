@@ -36,17 +36,19 @@ public class Personaje implements Serializable {
     }
 
     double atacar(){
-        if(this.tipo=="tank"){
+        if(this.tipo.equals("tank")){
             return this.damage;
-        } else if (tipo=="tirador") {
-            if ((int)Math.random()*2==0){
+        } else if (this.tipo.equals("tirador")) {
+            int numero = (int)Math.random()*2;
+            if (numero==0){
                 System.out.println("Salió critico..");
                 return (this.damage*1.5);
             }else {
                 return this.damage;
             }
         }else {
-            if ((int)Math.random()*4==0){
+            int numero = (int)Math.random()*4;
+            if (numero==0){
                 System.out.println("Salió critico..");
                 return (this.damage*1.5);
             }else {
